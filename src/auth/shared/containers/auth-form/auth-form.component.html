@@ -10,6 +10,12 @@
         <label>
             <input type="password" placeholder="Enter password" formControlName="password">
         </label>
+        <div class="error" *ngIf="emailFormat">
+            Invalid email format
+        </div>
+        <div class="error" *ngIf="passwordInvalid">
+            Password is required
+        </div>
 
         <ng-content select=".error"></ng-content>
 
