@@ -14,6 +14,7 @@
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
+    "useUnknownInCatchVariables": false,
     "noImplicitReturns": false,
     "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": true,
