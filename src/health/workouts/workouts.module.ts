@@ -1,3 +1,4 @@
+import { WorkoutTypeComponent } from './components/workout-type/workout-type.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +25,8 @@ export const ROUTES: Routes = [
     declarations: [
         WorkoutsComponent,
         WorkoutComponent,
-        WorkoutFormComponent
+        WorkoutFormComponent,
+        WorkoutTypeComponent
     ],
 })
 export class WorkoutsModule { }
