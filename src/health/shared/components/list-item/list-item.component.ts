@@ -24,7 +24,6 @@ export class ListItemComponent {
     }
 
     getRoute(item: any) {
-        // return [`../meals`, item.$key];
-        return [`../meals`, 'MvDILCar-5S7B_IhLJr'];
+        return [`../meals`, item.$key];
     }
 }
