@@ -24,6 +24,6 @@ export class ListItemComponent {
     }
 
     getRoute(item: any) {
-        return [`../meals`, item.$key];
+        return [`../${item.ingredients ? 'meals' : 'workouts'}`, item.$key];
     }
 }

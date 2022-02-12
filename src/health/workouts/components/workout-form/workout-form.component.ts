@@ -20,7 +20,16 @@ export class WorkoutFormComponent implements OnChanges {
 
     form = this.fb.group({
         name: ['', Validators.required],
-        type: 'strength'
+        type: 'strength',
+        strength: this.fb.group({
+            reps: 0,
+            sets: 0,
+            weight: 0
+        }),
+        endurance: this.fb.group({
+            distance: 0,
+            duration: 0
+        })
     });
 
     constructor(private fb: FormBuilder) { }
@@ -31,32 +40,17 @@ export class WorkoutFormComponent implements OnChanges {
 
             const value = this.workout;
             this.form.patchValue(value);
-
         }
     }
 
-    // emptyIngredients() {
-    //     while (this.ingredients.controls.length) {
-    //         this.ingredients.removeAt(0);
-    //     }
-    // }
+    get placeholder() {
+        return `e.g. ${this.form.get('type')?.value === 'strength' ? 'Benchpress' : 'Treadmill'}`;
+    }
 
     get required() {
         const control = this.form.get('name');
         return control?.hasError('required') && control?.touched
     }
-
-    // get ingredients() {
-    //     return this.form.get('ingredients') as FormArray;
-    // }
-
-    // addIngredient() {
-    //     this.ingredients.push(new FormControl(''));
-    // }
-
-    // removeIngredient(index: number) {
-    //     this.ingredients.removeAt(index);
-    // }
 
     createWorkout() {
         if (this.form.valid) {
