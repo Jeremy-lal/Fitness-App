@@ -8,6 +8,7 @@ import { Workout } from './health/shared/services/workout/workout.service';
 export interface State {
   user: User | undefined,
   meals: Meal[] | undefined,
+  selected: any,
   schedule: ScheduleItem[] | undefined,
   date: Date | undefined,
   workouts: Workout[] | undefined;
@@ -17,6 +18,7 @@ export interface State {
 const state: State = {
   user: undefined,
   meals: undefined,
+  selected: undefined,
   schedule: undefined,
   date: undefined,
   workouts: undefined

@@ -15,6 +15,7 @@ export class ScheduleCalendarComponent {
         }
     };
     @Output() change = new EventEmitter<Date>();
+    @Output() select = new EventEmitter<any>();
 
     selectedDay: Date;
     selectedWeek: Date;
@@ -36,6 +37,17 @@ export class ScheduleCalendarComponent {
 
     getSection(name: string): ScheduleItem {
         return this.items && this.items[name] || {};
+    }
+
+    selectSection({ type, assigned, data }: any, section: string) {
+        const day = this.selectedDay;
+        this.select.emit({
+            type,
+            assigned,
+            section,
+            day,
+            data
+        })
     }
 
     selectDay(index: number) {

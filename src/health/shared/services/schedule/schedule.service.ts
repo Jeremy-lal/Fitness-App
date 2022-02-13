@@ -1,6 +1,6 @@
 import { Meal } from './../meals/meals.service';
 import { Store } from 'store';
-import { BehaviorSubject, Observable, tap, map, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, tap, map, switchMap, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Workout } from '../workout/workout.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
@@ -25,6 +25,12 @@ export interface ScheduleList {
 @Injectable()
 export class ScheduleService {
     private date$ = new BehaviorSubject(new Date());
+    private section$ = new Subject();
+
+    selected$ = this.section$.pipe(
+        tap((next: any) => this.store.set('selected', next))
+    )
+
     schedule$: Observable<ScheduleItem[]> = this.date$.pipe(
         tap((next: any) => this.store.set('date', next)),
         map((day: any) => {
@@ -42,9 +48,10 @@ export class ScheduleService {
         //     return this.getSchedule(startAt, endtAt);
         // }),
         map((data: any) => {
+            const data2 = this.getSchedule(data.startAt, data.endtAt) as any
             const mapped: ScheduleList = {};
 
-            for (const prop of data) {
+            for (const prop of data2) {
                 if (!mapped[prop.section]) {
                     mapped[prop.section] = prop;
                 }
@@ -64,6 +71,10 @@ export class ScheduleService {
 
     updateDate(date: Date) {
         this.date$.next(date)
+    }
+
+    selectSection(event: any) {
+        this.section$.next(event)
     }
 
     private getSchedule(start: number, end: number) {
