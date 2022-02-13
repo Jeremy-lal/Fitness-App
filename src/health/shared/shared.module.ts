@@ -1,3 +1,4 @@
+import { ScheduleService } from './services/schedule/schedule.service';
 import { JoinPipe } from './pipes/join.pipe';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -35,7 +36,8 @@ export class SharedModule {
             ngModule: SharedModule,
             providers: [
                 MealsService,
-                WorkoutsService
+                WorkoutsService,
+                ScheduleService
             ]
         }
     }
