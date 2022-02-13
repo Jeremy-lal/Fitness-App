@@ -15,8 +15,21 @@ export class ScheduleCalendarComponent {
     @Output() change = new EventEmitter<Date>();
 
     selectedDay: Date;
+    selectedWeek: Date;
+    selectedDayIndex: number;
 
     constructor() { }
+
+    ngOnChanges() {
+        this.selectedDayIndex = this.getToday(this.selectedDay);
+        this.selectedWeek = this.getStartOfWeek(new Date(this.selectedDay));
+    }
+
+    selectDay(index: number) {
+        const selectedDay = new Date(this.selectedWeek);
+        selectedDay.setDate(selectedDay.getDate() + index);
+        this.change.emit(selectedDay);
+    }
 
     onChange(weekOffset: number) {
         const startOfWeek = this.getStartOfWeek(new Date());
@@ -27,9 +40,17 @@ export class ScheduleCalendarComponent {
         this.change.emit(startDate);
     }
 
+    private getToday(date: Date) {
+        let today = date.getDay() - 1;
+        if (today < 0) {
+            today = 6;
+        }
+        return today;
+    }
+
     private getStartOfWeek(date: Date) {
         const day = date.getDay()
-        const diff = date.getDay() - day + (day === 0 ? -7 : 1)
+        const diff = date.getDate() - day + (day === 0 ? -6 : 1)
         return new Date(date.setDate(diff))
     }
 }
