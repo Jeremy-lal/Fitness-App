@@ -1,3 +1,4 @@
+import { ScheduleSectionComponent } from './components/schedule-section/schedule-section.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +11,7 @@ import { ScheduleControlsComponent } from './components/schedule-controls/schedu
 
 // containers
 import { ScheduleComponent } from './containers/schedule/schedule.component';
+import { SharedModule } from '../shared/shared.module';
 
 export const ROUTES: Routes = [
     { path: '', component: ScheduleComponent }
@@ -19,13 +21,15 @@ export const ROUTES: Routes = [
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        RouterModule.forChild(ROUTES)
+        RouterModule.forChild(ROUTES),
+        SharedModule
     ],
     declarations: [
         ScheduleComponent,
         ScheduleCalendarComponent,
         ScheduleDaysComponent,
-        ScheduleControlsComponent
+        ScheduleControlsComponent,
+        ScheduleSectionComponent
     ],
 })
 export class ScheduleModule { }

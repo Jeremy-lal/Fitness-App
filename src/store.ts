@@ -1,3 +1,4 @@
+import { ScheduleItem } from './health/shared/services/schedule/schedule.service';
 import { Meal } from './health/shared/services/meals/meals.service';
 import { User } from './auth/shared/services/auth/auth.service';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -7,6 +8,7 @@ import { Workout } from './health/shared/services/workout/workout.service';
 export interface State {
   user: User | undefined,
   meals: Meal[] | undefined,
+  schedule: ScheduleItem[] | undefined,
   date: Date | undefined,
   workouts: Workout[] | undefined;
   [key: string]: any
@@ -15,6 +17,7 @@ export interface State {
 const state: State = {
   user: undefined,
   meals: undefined,
+  schedule: undefined,
   date: undefined,
   workouts: undefined
 };

@@ -1,3 +1,4 @@
+import { ScheduleItem, ScheduleList } from './../../../shared/services/schedule/schedule.service';
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
@@ -7,6 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     templateUrl: 'schedule-calendar.component.html'
 })
 export class ScheduleCalendarComponent {
+    @Input() items: ScheduleList | null;
     @Input() set date(date: Date | null) {
         if (date !== null) {
             this.selectedDay = new Date(date.getTime());
@@ -18,11 +20,22 @@ export class ScheduleCalendarComponent {
     selectedWeek: Date;
     selectedDayIndex: number;
 
+    sections = [
+        { key: 'morning', name: 'Morning' },
+        { key: 'lunch', name: 'Lunch' },
+        { key: 'evening', name: 'Evening' },
+        { key: 'snaks', name: 'Snaks and Drinks' },
+    ]
+
     constructor() { }
 
     ngOnChanges() {
         this.selectedDayIndex = this.getToday(this.selectedDay);
         this.selectedWeek = this.getStartOfWeek(new Date(this.selectedDay));
+    }
+
+    getSection(name: string): ScheduleItem {
+        return this.items && this.items[name] || {};
     }
 
     selectDay(index: number) {
