@@ -1,3 +1,4 @@
+import { ScheduleAssignComponent } from './components/schedule-assign/schedule-assign.component';
 import { ScheduleSectionComponent } from './components/schedule-section/schedule-section.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -29,7 +30,8 @@ export const ROUTES: Routes = [
         ScheduleCalendarComponent,
         ScheduleDaysComponent,
         ScheduleControlsComponent,
-        ScheduleSectionComponent
+        ScheduleSectionComponent,
+        ScheduleAssignComponent
     ],
 })
 export class ScheduleModule { }
